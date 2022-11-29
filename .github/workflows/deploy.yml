@@ -1,0 +1,26 @@
+name: Deploy Stack
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - uses: wshihadeh/docker-deployment-action@v1
+      name: Docker-Compose Remote Deployment
+      with:
+        remote_docker_host: ${{ secrets.SSH_USER }}@${{ secrets.SERVER_ADRESS }}
+        ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }}
+        ssh_public_key: ${{ secrets.SSH_PUBLIC_KEY }}
+        stack_file_name: docker-compose.yml
+        copy_stack_file: 'true'
+        deploy_path: ${{ secrets.ARTIFACT_FOLDER }}
+        deployment_mode: docker-compose
+        pull_images_first: 'true'
+        args: --env-file ${{ secrets.ARTIFACT_FOLDER }}/.env up -d
+        pre_deployment_command_args: 'down'
