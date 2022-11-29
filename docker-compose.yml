@@ -12,7 +12,6 @@ services:
     restart: always
     networks:
       - web
-      - database
     environment:
       NODE_ENV: production
       API_PORT: 80
@@ -55,7 +54,7 @@ services:
     image: "postgis/postgis"
     restart: always
     networks:
-      - database
+      - web
     ports:
     - 5432:5432
     environment:
