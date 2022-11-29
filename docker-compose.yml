@@ -3,8 +3,6 @@ version: "3.3"
 networks:
   web:
     external: true # traefik network
-  ratiscrum: 
-    external: false
 
 services:
   api:
@@ -12,7 +10,7 @@ services:
     restart: always
     networks:
       - web
-      - ratiscrum
+      
     environment:
       NODE_ENV: production
       API_PORT: 80
@@ -43,7 +41,6 @@ services:
     restart: always
     networks:
       - web
-      - ratiscrum
     labels:
     - "traefik.enable=true"
     - "traefik.http.routers.webapp.rule=Host(`${URL}`)"
@@ -57,8 +54,6 @@ services:
     restart: always
     ports:
     - 5432:5432
-    networks:
-    - ratiscrum
     environment:
       POSTGRES_DB: ${DB_NAME}
       POSTGRES_USER: ${DB_USER}
@@ -69,6 +64,8 @@ services:
       retries: 10
   minio:
     image: minio/minio
+    networks:
+    - web
     volumes:
     - ${MINIO_PATH}:/data
     environment:
