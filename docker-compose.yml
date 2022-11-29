@@ -10,7 +10,8 @@ services:
     restart: always
     networks:
       - web
-      
+    links: 
+      - postgres
     environment:
       NODE_ENV: production
       API_PORT: 80
