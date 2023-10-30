@@ -37,7 +37,7 @@ services:
       minio:
         condition: service_started
   webapp:
-    image: "ghcr.io/ratiscrum-v2/rts-app:main"
+    image: "ghcr.io/ratiscrum-v2/rts-app-2022:main"
     restart: always
     networks:
       - web
