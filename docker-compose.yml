@@ -50,7 +50,7 @@ services:
     - "traefik.http.routers.webapp.entrypoints=websecure"
     - "traefik.http.middlewares.cors-headers.headers.accessControlAllowOriginListRegex=(.*?)"
   postgres:
-    image: "postgis/postgis"
+    image: "postgis/postgis:15-3.4"
     restart: always
     networks:
       - web
