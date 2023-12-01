@@ -2,7 +2,7 @@ version: "3.3"
 
 services:
   api:
-    image: "ghcr.io/ratiscrum-v2/rts-api:main"
+    image: "ghcr.io/ratiscrum/rts-api:main"
     restart: always
     ports:
       - 8000:80
