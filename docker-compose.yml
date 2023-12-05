@@ -6,7 +6,7 @@ networks:
 
 services:
   api:
-    image: "ghcr.io/ratiscrum/rts-api:main"
+    image: "ghcr.io/ratiscrum/rts-api-2022:main"
     restart: always
     networks:
       - web
@@ -37,7 +37,7 @@ services:
       minio:
         condition: service_started
   webapp:
-    image: "ghcr.io/ratiscrum/rts-app:main"
+    image: "ghcr.io/ratiscrum/rts-app-2022:main"
     restart: always
     networks:
       - web
